@@ -1,0 +1,60 @@
+﻿@model MyProject.Models.CurrencyViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Rates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .create-button {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Currency Exchange Rates</h1>
+    <button class="create-button" onclick="location.href='@Url.Action("Create", "Home")'">Create</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Currency</th>
+                <th>Exchange Time</th>
+                <th>Exchange Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var currency in Model.Currencies)
+            {
+                <tr>
+                    <td>@currency.CurrencyN</td>
+                    <td>@currency.Exchangetime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@currency.Exchangerate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
